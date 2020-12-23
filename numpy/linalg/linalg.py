@@ -2171,13 +2171,13 @@ def lstsq(a, b, rcond="warn"):
     r"""
     Return the least-squares solution to a linear matrix equation.
 
-    Computes the vector x that approximatively solves the equation
-    ``a @ x = b``. The equation may be under-, well-, or over-determined
-    (i.e., the number of linearly independent rows of `a` can be less than,
-    equal to, or greater than its number of linearly independent columns).
-    If `a` is square and of full rank, then `x` (but for round-off error)
-    is the "exact" solution of the equation. Else, `x` minimizes the
-    Euclidean 2-norm :math:`|| b - a x ||`.
+    Computes the `n` element vector `x` that approximatively solves the equation
+    ``a @ x = b``, where `a` is an `m`-by-`n` matrix and `b` is a `m` element 
+    vector. When the system is overdetermined (``m >= n`` and ``rank(a) = n``), 
+    a solution `x` that minimizes the Euclidean 2-norm ``||b-ax||`` is found.
+    Else, when the system is underdetermined (``m < n`` and ``rank(A) = m``) 
+    or when `a` is rank-deficient (``rank(A) < min(m,n)``), a solution `x` that 
+    minimizes both ``||b-ax||`` and ``||x||`` is found.
 
     Parameters
     ----------
